@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_dos/ui/resources/color/color.dart';
+import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
 class Label extends StatefulWidget {
   ///Obligatorio,texto que se mostrara en la chip
@@ -80,11 +81,13 @@ class _LabelState extends State<Label> {
     if (isSelected) {
       backgroundColor = widget.selectedBackgroundColor;
       borderColor = widget.borderSelectedColor;
-      textStyle = TextStyle(color: widget.selectedTextColor);
+      textStyle =
+          LocalTextStyle.bodyBold.copyWith(color: widget.selectedTextColor);
     } else {
       backgroundColor = widget.defaultBackgroundtColor;
       borderColor = widget.borderDefaultColor;
-      textStyle = TextStyle(color: widget.defaultTextColor);
+      textStyle =
+          LocalTextStyle.bodyRegular.copyWith(color: widget.defaultTextColor);
     }
   }
 

@@ -12,11 +12,15 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: Center(
-          child: Label(
-              text: "Pruebas labels",
-              onTap: (select) {
-                print(select);
-              }),
+          child: SizedBox(
+            height: 30,
+            width: 93,
+            child: Label(
+                text: "Pruebas labels",
+                onTap: (select) {
+                  print(select);
+                }),
+          ),
         ),
       ),
     );
