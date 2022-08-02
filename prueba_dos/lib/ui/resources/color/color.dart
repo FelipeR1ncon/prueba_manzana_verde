@@ -9,5 +9,5 @@ class LocalColors {
   static const grisN100 = Color(0xFF2D2D2D);
 
   /// Fin de Grises
-
+  static const verdeV200 = Color(0xFF27884D);
 }

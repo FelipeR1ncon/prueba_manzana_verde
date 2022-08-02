@@ -111,7 +111,8 @@ class _LabelState extends State<Label> {
           ),
           child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-              child: Text(widget.text, style: textStyle)),
+              child: Text(widget.text,
+                  style: textStyle, textAlign: TextAlign.center)),
         ));
   }
 }
