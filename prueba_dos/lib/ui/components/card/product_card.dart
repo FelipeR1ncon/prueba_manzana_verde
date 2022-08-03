@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:prueba_dos/ui/components/button/text_button.dart';
 import 'package:prueba_dos/ui/resources/color/color.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
@@ -42,7 +43,7 @@ class _ProductCardState extends State<ProductCard> {
             offset: Offset(0, 0.22),
           ),
         ],
-        color: LocalColors.blanco,
+        color: LocalColors.white,
         borderRadius: BorderRadius.circular(10),
       ),
       width: 150,
@@ -73,7 +74,7 @@ class _ProductCardState extends State<ProductCard> {
                               vertical: 2, horizontal: 10),
                           child: Text("En oferta",
                               style: LocalTextStyle.bodyRegular.copyWith(
-                                  color: LocalColors.blanco, fontSize: 12),
+                                  color: LocalColors.white, fontSize: 12),
                               textAlign: TextAlign.start),
                         )))
               ],
@@ -124,10 +125,14 @@ class _ProductCardState extends State<ProductCard> {
                           )),
                     ),
                   ],
+                ),
+                FilledButton(
+                  onPressed: () {},
+                  text: "Agregar",
                 )
               ],
             ),
-          )
+          ),
         ],
       ),
     );

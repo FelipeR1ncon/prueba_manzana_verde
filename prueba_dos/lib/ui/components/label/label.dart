@@ -44,10 +44,10 @@ class Label extends StatefulWidget {
       required this.text,
       this.initialIsSelected = false,
       this.selectedBackgroundColor = LocalColors.grisN100,
-      this.defaultBackgroundtColor = LocalColors.blanco,
+      this.defaultBackgroundtColor = LocalColors.white,
       this.borderDefaultColor = LocalColors.grisN40,
       this.borderSelectedColor = LocalColors.grisN100,
-      this.selectedTextColor = LocalColors.blanco,
+      this.selectedTextColor = LocalColors.white,
       this.defaultTextColor = LocalColors.grisN70,
       this.onTap})
       : super(key: key);

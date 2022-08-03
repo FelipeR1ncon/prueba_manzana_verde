@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LocalColors {
-  static const blanco = Colors.white;
+  static const white = Colors.white;
 
   /// Inicio de Grises
   static const grisN30 = Color(0xFFD3D3D3);

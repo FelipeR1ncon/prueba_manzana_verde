@@ -84,9 +84,9 @@ class SearchInput extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.fromLTRB(12, 6, 6, 2),
                   focusedBorder: null,
-                  focusColor: LocalColors.blanco,
+                  focusColor: LocalColors.white,
                   filled: true,
-                  fillColor: LocalColors.blanco,
+                  fillColor: LocalColors.white,
                   hintText: placeHolder,
                   border: const OutlineInputBorder(
                     borderSide: BorderSide.none,
