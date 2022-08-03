@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_dos/ui/components/input/input_search.dart';
+import 'package:prueba_dos/ui/components/input/location_input.dart';
 import 'package:prueba_dos/ui/components/label/label.dart';
 
 class MyApp extends StatelessWidget {
@@ -20,6 +21,12 @@ class MyApp extends StatelessWidget {
               height: 20,
             ),
             const SearchInput(placeHolder: "Buscar en market"),
+            const SizedBox(
+              height: 20,
+            ),
+            const LocationInput(
+              hintText: "Dirección",
+            ),
             const SizedBox(
               height: 20,
             ),
