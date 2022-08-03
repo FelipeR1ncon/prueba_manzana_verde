@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LocalTextStyle {
-  static const double _sizeGigantTitle = 32;
   static const double _sizeNormalTitle = 24;
   static const double _sizeEmphasis = 16;
   static const double _sizeNormalBody = 14;

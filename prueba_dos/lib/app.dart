@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_dos/ui/components/card/product_card.dart';
-import 'package:prueba_dos/ui/components/input/input_search.dart';
+import 'package:prueba_dos/ui/components/input/search_input.dart';
 import 'package:prueba_dos/ui/components/input/location_input.dart';
 import 'package:prueba_dos/ui/components/label/label.dart';
 import 'package:prueba_dos/ui/home/home_page.dart';
