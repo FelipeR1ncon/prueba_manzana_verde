@@ -7,7 +7,7 @@ class SearchInput extends StatelessWidget {
   ///Place holder que se mostrara en el input del componente
   final String placeHolder;
 
-  ///Funcion que se ejecuta cuando se da clicl en el seccion del icono de buscar
+  ///Funcion que se ejecuta cuando se da click en el seccion del icono de buscar
   final void Function()? onTapSearch;
 
   ///Funcion que se ejecuta cada vez que cambia el texto del input

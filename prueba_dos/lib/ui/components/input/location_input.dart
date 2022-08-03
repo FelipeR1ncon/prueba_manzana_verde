@@ -5,16 +5,30 @@ import 'package:prueba_dos/ui/resources/icon/path_icon.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
 class LocationInput extends StatefulWidget {
-  const LocationInput({Key? key, required this.hintText}) : super(key: key);
+  const LocationInput(
+      {Key? key, required this.hintText, this.onTapSearch, this.onChangeText})
+      : super(key: key);
 
+  ///Texto para indicarle al usuario que debe de ingresar en el campo
   final String hintText;
+
+  ///Funcion que se ejecuta cuando se da click en el seccion del icono de buscar
+  final void Function()? onTapSearch;
+
+  ///Funcion que se ejecuta cada vez que cambia el texto del input
+  final void Function(String)? onChangeText;
 
   @override
   State<LocationInput> createState() => _LocationInputState();
 }
 
 class _LocationInputState extends State<LocationInput> {
+  ///Bandera para manejar el estado del foco del componente y pintar los
+  ///componentes adecuados en cada estado
   bool hasFocus = false;
+
+  ///Texto actual del componente se usa para esconder el icono cuando el componente
+  ///no esta vacio
   String currentText = "";
 
   @override
@@ -37,22 +51,28 @@ class _LocationInputState extends State<LocationInput> {
             child: Row(children: [
               Expanded(
                 child: SizedBox(
-                  height: 56,
+                  height: 52,
                   child: TextFormField(
                     style: LocalTextStyle.bodyRegular,
                     onChanged: (text) {
+                      if (widget.onChangeText != null) {
+                        widget.onChangeText!(text);
+                      }
+
                       setState(() {
                         currentText = text;
                       });
                     },
                     cursorColor: LocalColors.grisN100,
                     decoration: InputDecoration(
+                      isDense: false,
                       labelStyle: LocalTextStyle.bodyBold.copyWith(
-                          color: hasFocus
+                          color: hasFocus || currentText.isNotEmpty
                               ? LocalColors.grisN60
                               : LocalColors.grisN70,
-                          fontSize: hasFocus ? 14 : 16),
-                      contentPadding: const EdgeInsets.fromLTRB(12, 6, 12, 6),
+                          fontSize:
+                              hasFocus || currentText.isNotEmpty ? 14 : 16),
+                      contentPadding: const EdgeInsets.fromLTRB(12, 6, 12, 0),
                       labelText: widget.hintText,
                       alignLabelWithHint: true,
                       enabledBorder: const OutlineInputBorder(
@@ -65,18 +85,21 @@ class _LocationInputState extends State<LocationInput> {
                   ),
                 ),
               ),
-              Visibility(
-                visible: !hasFocus && currentText.isEmpty,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 10, right: 12),
-                  child: SizedBox(
-                    height: 22,
-                    width: 22,
-                    child: SvgPicture.asset(
-                      LocalIcon.search.path,
-                      color: LocalColors.grisN50,
+              GestureDetector(
+                onTapCancel: () => widget.onTapSearch?.call(),
+                child: Visibility(
+                  visible: !hasFocus && currentText.isEmpty,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10, right: 12),
+                    child: SizedBox(
                       height: 22,
                       width: 22,
+                      child: SvgPicture.asset(
+                        LocalIcon.search.path,
+                        color: LocalColors.grisN50,
+                        height: 22,
+                        width: 22,
+                      ),
                     ),
                   ),
                 ),
@@ -91,8 +114,8 @@ class _LocationInputState extends State<LocationInput> {
               width: 4,
             ),
             SizedBox(
-              width: 16,
-              height: 16,
+              width: 22,
+              height: 22,
               child: SvgPicture.asset(
                 LocalIcon.location.path,
                 color: LocalColors.verdeV200,
