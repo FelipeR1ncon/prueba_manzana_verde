@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:prueba_dos/ui/resources/color/color.dart';
+import 'package:prueba_dos/ui/resources/icon/path_icon.dart';
+import 'package:prueba_dos/ui/resources/style/text_style.dart';
+
+import '../components/input/search_input.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,9 +13,103 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          color: LocalColors.grisN20,
-        ),
+        child: Column(children: [
+          Container(
+            color: LocalColors.grisN20,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ///TODO CONTINUAR CONSTRUYENDO LA CABECERA
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                            child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SvgPicture.asset(LocalIcon.home.path),
+                            const SizedBox(
+                              width: 9.8,
+                            ),
+                            const Text(
+                              "Inicio",
+                              style: LocalTextStyle.bodyBold,
+                            )
+                          ],
+                        )),
+                        Flexible(
+                            child: Container(
+                          width: 58,
+                          height: 32,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: LocalColors.verdeV200, width: 2),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SvgPicture.asset(LocalIcon.shoppingCart.path),
+                              const SizedBox(
+                                width: 6,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 2),
+                                child: Text("0",
+                                    style: LocalTextStyle.bodyBold.copyWith(
+                                      color: LocalColors.verdeV200,
+                                      fontSize: 16,
+                                    )),
+                              )
+                            ],
+                          ),
+                        ))
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  const SearchInput(
+                    placeHolder: "Buscar en market",
+                  ),
+
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          LocalIcon.locationIndicator.path,
+                          color: LocalColors.grisN70,
+                        ),
+                        const SizedBox(
+                          width: 14,
+                        ),
+                        Expanded(
+                            child: Text(
+                          "Consultar cobertura",
+                          style: LocalTextStyle.bodyRegular
+                              .copyWith(color: LocalColors.grisN70),
+                        )),
+                        SvgPicture.asset(
+                          LocalIcon.chevronLeft.path,
+                          color: LocalColors.grisN70,
+                          height: 8,
+                          width: 12,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ]),
       ),
     );
   }

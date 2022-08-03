@@ -92,6 +92,8 @@ class _ProductCardState extends State<ProductCard> {
                   Expanded(
                     child: Text(
                       widget.productName,
+                      maxLines: 3,
+                      textScaleFactor: 1,
                       style: LocalTextStyle.bodyRegular,
                     ),
                   )
