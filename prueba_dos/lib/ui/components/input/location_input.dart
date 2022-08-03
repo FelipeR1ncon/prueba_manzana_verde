@@ -117,7 +117,7 @@ class _LocationInputState extends State<LocationInput> {
               width: 22,
               height: 22,
               child: SvgPicture.asset(
-                LocalIcon.location.path,
+                LocalIcon.gpsPoint.path,
                 color: LocalColors.verdeV200,
               ),
             ),

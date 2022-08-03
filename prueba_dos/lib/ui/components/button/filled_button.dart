@@ -28,12 +28,8 @@ class FilledButton extends StatelessWidget {
               LocalTextStyle.emphasisText.copyWith(color: LocalColors.white)),
           backgroundColor: MaterialStateProperty.all(LocalColors.verdeV200)),
       onPressed: onPressed,
-      child: Container(
+      child: SizedBox(
         height: heightButton,
-        decoration: BoxDecoration(
-          color: LocalColors.verdeV200,
-          borderRadius: BorderRadius.circular(32),
-        ),
         child: Padding(
             padding: const EdgeInsets.all(4),
             child: Text(text,

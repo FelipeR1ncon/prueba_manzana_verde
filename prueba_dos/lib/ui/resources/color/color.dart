@@ -4,6 +4,7 @@ class LocalColors {
   static const white = Colors.white;
 
   /// Inicio de Grises
+  static const grisN20 = Color(0xFFF4F4F4);
   static const grisN30 = Color(0xFFD3D3D3);
   static const grisN40 = Color(0xFFBABABA);
   static const grisN50 = Color(0xFFA0A0A9);

@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:prueba_dos/ui/components/button/text_button.dart';
+import 'package:prueba_dos/ui/components/button/filled_button.dart';
 import 'package:prueba_dos/ui/resources/color/color.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
@@ -12,7 +12,7 @@ class ProductCard extends StatefulWidget {
     required this.productMeasurement,
     required this.productBrand,
     required this.normalPrice,
-    required this.offerPrice,
+    this.offerPrice = "",
   }) : super(key: key);
 
   final String productImagePath;
@@ -61,22 +61,25 @@ class _ProductCardState extends State<ProductCard> {
                         topRight: Radius.circular(10)),
                     child: Image.asset(widget.productImagePath,
                         fit: BoxFit.contain)),
-                Positioned(
-                    top: 6,
-                    left: 6,
-                    child: Container(
-                        decoration: BoxDecoration(
-                          color: LocalColors.verdeV200,
-                          borderRadius: BorderRadius.circular(48),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 2, horizontal: 10),
-                          child: Text("En oferta",
-                              style: LocalTextStyle.bodyRegular.copyWith(
-                                  color: LocalColors.white, fontSize: 12),
-                              textAlign: TextAlign.start),
-                        )))
+                Visibility(
+                  visible: widget.offerPrice.isNotEmpty,
+                  child: Positioned(
+                      top: 6,
+                      left: 6,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            color: LocalColors.verdeV200,
+                            borderRadius: BorderRadius.circular(48),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 2, horizontal: 10),
+                            child: Text("En oferta",
+                                style: LocalTextStyle.bodyRegular.copyWith(
+                                    color: LocalColors.white, fontSize: 12),
+                                textAlign: TextAlign.start),
+                          ))),
+                )
               ],
             ),
           ),
