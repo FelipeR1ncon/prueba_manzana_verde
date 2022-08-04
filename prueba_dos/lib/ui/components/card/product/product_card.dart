@@ -1,26 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:prueba_dos/ui/components/button/filled_button.dart';
+import 'package:prueba_dos/ui/components/card/product/product_model.dart';
 import 'package:prueba_dos/ui/resources/color/color.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({
-    Key? key,
-    required this.productImagePath,
-    required this.productName,
-    required this.productMeasurement,
-    required this.productBrand,
-    required this.normalPrice,
-    this.offerPrice = "",
-  }) : super(key: key);
+  const ProductCard({Key? key, required this.product}) : super(key: key);
 
-  final String productImagePath;
-  final String productName;
-  final String productMeasurement;
-  final String productBrand;
-  final String normalPrice;
-  final String offerPrice;
+  final ProductUIModel product;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -30,6 +18,7 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       decoration: BoxDecoration(
         boxShadow: const [
           BoxShadow(
@@ -46,23 +35,25 @@ class _ProductCardState extends State<ProductCard> {
         color: LocalColors.white,
         borderRadius: BorderRadius.circular(10),
       ),
-      width: 150,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            height: 86,
+            height: 93,
             child: Stack(
               children: [
                 ClipRRect(
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10)),
-                    child: Image.asset(widget.productImagePath,
-                        fit: BoxFit.contain)),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: Image.asset(widget.product.productImagePath,
+                          fit: BoxFit.cover),
+                    )),
                 Visibility(
-                  visible: widget.offerPrice.isNotEmpty,
+                  visible: widget.product.offerPrice.isNotEmpty,
                   child: Positioned(
                       top: 6,
                       left: 6,
@@ -84,14 +75,14 @@ class _ProductCardState extends State<ProductCard> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 8),
+            padding: const EdgeInsets.fromLTRB(8, 9, 8, 4),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Row(children: [
                   Expanded(
                     child: Text(
-                      widget.productName,
+                      widget.product.productName,
                       maxLines: 3,
                       textScaleFactor: 1,
                       style: LocalTextStyle.bodyRegular,
@@ -99,14 +90,14 @@ class _ProductCardState extends State<ProductCard> {
                   )
                 ]),
                 Row(children: [
-                  Text(widget.productMeasurement,
+                  Text(widget.product.productMeasurement,
                       textAlign: TextAlign.start,
                       style: LocalTextStyle.bodyRegular
                           .copyWith(color: LocalColors.grisN70, fontSize: 12)),
                 ]),
                 Row(children: [
                   Text(
-                    widget.productBrand,
+                    widget.product.productBrand,
                     style: LocalTextStyle.bodyRegular
                         .copyWith(color: LocalColors.verdeV200, fontSize: 12),
                   ),
@@ -118,12 +109,12 @@ class _ProductCardState extends State<ProductCard> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     AutoSizeText(
-                      widget.normalPrice,
+                      widget.product.normalPrice,
                       textAlign: TextAlign.start,
                       style: LocalTextStyle.emphasisText,
                     ),
                     Expanded(
-                      child: AutoSizeText(widget.offerPrice,
+                      child: AutoSizeText(widget.product.offerPrice,
                           textAlign: TextAlign.center,
                           style: LocalTextStyle.bodyRegular.copyWith(
                             decoration: TextDecoration.lineThrough,

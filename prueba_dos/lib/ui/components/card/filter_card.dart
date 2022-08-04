@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:prueba_dos/ui/resources/color/color.dart';
-import 'package:prueba_dos/ui/resources/icon/path_icon.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
 class FilterCard extends StatelessWidget {
@@ -9,12 +8,12 @@ class FilterCard extends StatelessWidget {
       {Key? key,
       required this.pathIcon,
       required this.text,
-      this.notificationoint = false})
+      this.showNotificationPoint = false})
       : super(key: key);
 
   final String pathIcon;
   final String text;
-  final bool notificationoint;
+  final bool showNotificationPoint;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +23,26 @@ class FilterCard extends StatelessWidget {
           color: LocalColors.grisN20,
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            text,
-            style: LocalTextStyle.bodyRegular,
-          ),
+          Text(text,
+              style: LocalTextStyle.bodyRegular.copyWith(color: Colors.black)),
+          Visibility(
+              visible: showNotificationPoint,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 8),
+                    child: CircleAvatar(
+                      radius: 3.1416,
+                      backgroundColor: LocalColors.verdeV200,
+                    ),
+                  )
+                ],
+              )),
           const SizedBox(
             width: 10,
           ),
