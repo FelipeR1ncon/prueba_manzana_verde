@@ -75,7 +75,7 @@ class _ProductCardState extends State<ProductCard> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 9, 8, 4),
+            padding: const EdgeInsets.fromLTRB(8, 9, 8, 2),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

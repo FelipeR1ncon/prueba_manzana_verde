@@ -12,9 +12,14 @@ import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
 import '../components/input/search_input.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final List<String> labels = [
     "Etiqueta a",
     "Etiqueta bc",
@@ -51,17 +56,23 @@ class HomePage extends StatelessWidget {
         normalPrice: "S/. 11.00"),
   ];
 
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 12, right: 12),
+        body: SafeArea(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const HeaderHome(),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 24, 0, 12),
+              padding: const EdgeInsets.fromLTRB(12, 24, 12, 12),
               child: Text(
                 "Snack",
                 style: LocalTextStyle.titleText.copyWith(fontSize: 32),
@@ -76,23 +87,86 @@ class HomePage extends StatelessWidget {
               height: 24,
             ),
             Expanded(
-              child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisExtent: 273,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12),
-                  itemCount: products.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ProductCard(
-                      product: products[index],
-                    );
-                  }),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount:
+                            MediaQuery.of(context).size.height > 300 ? 2 : 1,
+                        mainAxisExtent: 280,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12),
+                    itemCount: products.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ProductCard(
+                        product: products[index],
+                      );
+                    }),
+              ),
             ),
           ]),
         ),
-      ),
-    );
+        bottomNavigationBar: SizedBox(
+            height: 80,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SvgPicture.asset(
+                          LocalIcon.leaftFill.path,
+                          width: 14,
+                          height: 12,
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Text("Comidas",
+                            style: LocalTextStyle.bodyBold
+                                .copyWith(color: LocalColors.grisN100))
+                      ],
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Stack(children: [
+                          SvgPicture.asset(
+                            LocalIcon.homaStart.path,
+                            width: 18,
+                            height: 16,
+                          ),
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            child: SvgPicture.asset(
+                              LocalIcon.start.path,
+                              color: const Color(0xFFCF44A8),
+                              width: 16,
+                              height: 18,
+                            ),
+                          ),
+                        ]),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Text("Market",
+                            style: LocalTextStyle.bodyBold
+                                .copyWith(color: LocalColors.grisN100))
+                      ],
+                    )
+                  ],
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [SvgPicture.asset(LocalIcon.homeIndicator.path)]),
+              ],
+            )));
   }
 }
 
@@ -103,24 +177,27 @@ class CardFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-            flex: 8,
-            child: FilterCard(
-                pathIcon: LocalIcon.arrowSwap.path, text: "Ordenar")),
-        const Spacer(
-          flex: 1,
-        ),
-        Expanded(
-            flex: 8,
-            child: FilterCard(
-              pathIcon: LocalIcon.chevronLeft.path,
-              text: "Marcas",
-              showNotificationPoint: true,
-            )),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+              flex: 8,
+              child: FilterCard(
+                  pathIcon: LocalIcon.arrowSwap.path, text: "Ordenar")),
+          const Spacer(
+            flex: 1,
+          ),
+          Expanded(
+              flex: 8,
+              child: FilterCard(
+                pathIcon: LocalIcon.chevronLeft.path,
+                text: "Marcas",
+                showNotificationPoint: true,
+              )),
+        ],
+      ),
     );
   }
 }
@@ -135,22 +212,25 @@ class LabelFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 32,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          for (var item in labels)
-            Row(children: [
-              Label(
-                text: item,
-                initialIsSelected: "Snacks" == item,
-              ),
-              const SizedBox(
-                width: 8,
-              )
-            ])
-        ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 12),
+      child: SizedBox(
+        height: 32,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            for (var item in labels)
+              Row(children: [
+                Label(
+                  text: item,
+                  initialIsSelected: "Snacks" == item,
+                ),
+                const SizedBox(
+                  width: 8,
+                )
+              ])
+          ],
+        ),
       ),
     );
   }
@@ -166,7 +246,7 @@ class HeaderHome extends StatelessWidget {
     return Container(
       color: LocalColors.grisN20,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
