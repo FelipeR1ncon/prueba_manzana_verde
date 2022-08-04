@@ -18,23 +18,26 @@ class GridProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount:
-                    MediaQuery.of(context).size.height > 300 ? 2 : 1,
-                mainAxisExtent: 280,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12),
-            itemCount: products.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ProductCard(
-                minusBtnOnPressed: minusBtnOnPressed,
-                plusBtnOnPressed: plusBtnOnPressed,
-                product: products[index],
-              );
-            }),
-      ),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: SingleChildScrollView(
+              child: Wrap(
+            direction: Axis.horizontal,
+            spacing: 8,
+            runSpacing: 9,
+            children: [
+              for (var item in products)
+                SizedBox(
+                  width: MediaQuery.of(context).size.width >= 200
+                      ? MediaQuery.of(context).size.width * 0.45
+                      : MediaQuery.of(context).size.width * 0.70,
+                  child: ProductCard(
+                    minusBtnOnPressed: minusBtnOnPressed,
+                    plusBtnOnPressed: plusBtnOnPressed,
+                    product: item,
+                  ),
+                )
+            ],
+          ))),
     );
   }
 }

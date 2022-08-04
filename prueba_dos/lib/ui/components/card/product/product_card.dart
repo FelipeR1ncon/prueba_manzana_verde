@@ -62,8 +62,8 @@ class _ProductCardState extends State<ProductCard> {
                 Visibility(
                   visible: widget.product.offerPrice.isNotEmpty,
                   child: Positioned(
-                      top: 6,
-                      left: 6,
+                      top: 7,
+                      left: 8,
                       child: Container(
                           decoration: BoxDecoration(
                             color: LocalColors.verdeV200,
