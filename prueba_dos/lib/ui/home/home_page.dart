@@ -102,6 +102,7 @@ class _HomePageState extends State<HomePage> {
           changeIndex: (newIndex) {
             _onItemTapped(newIndex);
           },
-        ));
+        ),
+        resizeToAvoidBottomInset: false);
   }
 }
