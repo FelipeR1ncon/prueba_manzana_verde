@@ -5,8 +5,8 @@ import 'package:prueba_dos/ui/resources/color/color.dart';
 import 'package:prueba_dos/ui/resources/icon/path_icon.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
-class FilledButton extends StatefulWidget {
-  const FilledButton(
+class AddButton extends StatefulWidget {
+  const AddButton(
       {Key? key,
       required this.text,
       this.heightButton = 32,
@@ -27,10 +27,10 @@ class FilledButton extends StatefulWidget {
   final void Function()? minuBtnOnPressed;
 
   @override
-  State<FilledButton> createState() => _FilledButtonState();
+  State<AddButton> createState() => _AddButtonState();
 }
 
-class _FilledButtonState extends State<FilledButton> {
+class _AddButtonState extends State<AddButton> {
   late int count;
 
   @override
@@ -65,7 +65,7 @@ class _FilledButtonState extends State<FilledButton> {
         height: widget.heightButton,
         child: count == 0
             ? Padding(
-                padding: const EdgeInsets.only(top: 4),
+                padding: const EdgeInsets.fromLTRB(10, 4, 10, 0),
                 child: Text(widget.text,
                     style: LocalTextStyle.emphasisText,
                     textAlign: TextAlign.center),

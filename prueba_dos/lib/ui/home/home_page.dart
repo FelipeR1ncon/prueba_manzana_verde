@@ -38,8 +38,7 @@ class _HomePageState extends State<HomePage> {
         productName: "Almendra Cubierta en Chocolate - Gozana",
         productMeasurement: "12 gr",
         productBrand: "Gozana",
-        normalPrice: "S/ 15.00",
-        offerPrice: "S/ 19.00"),
+        normalPrice: "S/ 15.00"),
     ProductUIModel(
         productImagePath: LocalImage.product4.path,
         productName: "Garbanzos Horneados Ajo y Cebolla - Gozana",

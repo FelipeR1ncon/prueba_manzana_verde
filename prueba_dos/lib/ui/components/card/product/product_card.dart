@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:prueba_dos/ui/components/button/filled_button.dart';
+import 'package:prueba_dos/ui/components/button/add_button.dart';
 import 'package:prueba_dos/ui/components/card/product/product_model.dart';
 import 'package:prueba_dos/ui/resources/color/color.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
@@ -15,7 +15,6 @@ class ProductCard extends StatefulWidget {
 
   final ProductUIModel product;
   final void Function()? plusBtnOnPressed;
-
   final void Function()? minusBtnOnPressed;
 
   @override
@@ -130,7 +129,7 @@ class _ProductCardState extends State<ProductCard> {
                     ),
                   ],
                 ),
-                FilledButton(
+                AddButton(
                   minuBtnOnPressed: widget.minusBtnOnPressed,
                   plusBtnOnPressed: widget.plusBtnOnPressed,
                   text: "Agregar",
