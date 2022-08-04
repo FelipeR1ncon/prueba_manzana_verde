@@ -6,9 +6,17 @@ import 'package:prueba_dos/ui/resources/color/color.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({Key? key, required this.product}) : super(key: key);
+  const ProductCard(
+      {Key? key,
+      required this.product,
+      this.plusBtnOnPressed,
+      this.minusBtnOnPressed})
+      : super(key: key);
 
   final ProductUIModel product;
+  final void Function()? plusBtnOnPressed;
+
+  final void Function()? minusBtnOnPressed;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -123,7 +131,8 @@ class _ProductCardState extends State<ProductCard> {
                   ],
                 ),
                 FilledButton(
-                  onPressed: () {},
+                  minuBtnOnPressed: widget.minusBtnOnPressed,
+                  plusBtnOnPressed: widget.plusBtnOnPressed,
                   text: "Agregar",
                 )
               ],

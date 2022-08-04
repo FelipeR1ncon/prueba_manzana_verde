@@ -6,9 +6,13 @@ class GridProduct extends StatelessWidget {
   const GridProduct({
     Key? key,
     required this.products,
+    this.plusBtnOnPressed,
+    this.minusBtnOnPressed,
   }) : super(key: key);
 
   final List<ProductUIModel> products;
+  final void Function()? plusBtnOnPressed;
+  final void Function()? minusBtnOnPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +29,8 @@ class GridProduct extends StatelessWidget {
             itemCount: products.length,
             itemBuilder: (BuildContext context, int index) {
               return ProductCard(
+                minusBtnOnPressed: minusBtnOnPressed,
+                plusBtnOnPressed: plusBtnOnPressed,
                 product: products[index],
               );
             }),

@@ -12,7 +12,9 @@ enum LocalIcon {
   homeIndicator("assets/icons/home_indicator.svg"),
   leaftFill("assets/icons/leaf_fill.svg"),
   homaStart("assets/icons/home_star.svg"),
-  start("assets/icons/star.svg");
+  start("assets/icons/star.svg"),
+  plusBtn("assets/icons/plus_btn.svg"),
+  minusBtn("assets/icons/minus_btn.svg");
 
   final String path;
 

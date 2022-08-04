@@ -9,7 +9,10 @@ import '../../resources/color/color.dart';
 class HeaderHome extends StatelessWidget {
   const HeaderHome({
     Key? key,
+    required this.quatityProducts,
   }) : super(key: key);
+
+  final int quatityProducts;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +60,7 @@ class HeaderHome extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 2),
-                          child: Text("0",
+                          child: Text(quatityProducts.toString(),
                               style: LocalTextStyle.bodyBold.copyWith(
                                 color: LocalColors.verdeV200,
                                 fontSize: 16,

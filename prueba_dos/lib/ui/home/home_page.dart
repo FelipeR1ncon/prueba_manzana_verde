@@ -49,10 +49,23 @@ class _HomePageState extends State<HomePage> {
   ];
 
   int _selectedIndex = 0;
+  int _quatityProducts = 0;
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+
+  void _addedProduct() {
+    setState(() {
+      _quatityProducts = _quatityProducts + 1;
+    });
+  }
+
+  void _subtractProduct() {
+    setState(() {
+      _quatityProducts = _quatityProducts - 1;
     });
   }
 
@@ -62,7 +75,7 @@ class _HomePageState extends State<HomePage> {
         body: SafeArea(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const HeaderHome(),
+            HeaderHome(quatityProducts: _quatityProducts),
             Padding(
               padding: const EdgeInsets.fromLTRB(12, 24, 12, 12),
               child: Text(
@@ -78,7 +91,11 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 24,
             ),
-            GridProduct(products: products),
+            GridProduct(
+              products: products,
+              minusBtnOnPressed: () => _subtractProduct(),
+              plusBtnOnPressed: () => _addedProduct(),
+            ),
           ]),
         ),
         bottomNavigationBar: NavBar(
