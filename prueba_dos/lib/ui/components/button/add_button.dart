@@ -48,7 +48,7 @@ class _AddButtonState extends State<AddButton> {
               : null,
           padding: count > 0
               ? MaterialStateProperty.all(
-                  const EdgeInsets.symmetric(vertical: 2, horizontal: 2))
+                  const EdgeInsets.symmetric(vertical: 1, horizontal: 3))
               : null,
           shape: MaterialStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(32))),

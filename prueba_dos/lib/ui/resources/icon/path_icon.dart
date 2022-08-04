@@ -14,7 +14,8 @@ enum LocalIcon {
   homaStart("assets/icons/home_star.svg"),
   start("assets/icons/star.svg"),
   plusBtn("assets/icons/plus_btn.svg"),
-  minusBtn("assets/icons/minus_btn.svg");
+  minusBtn("assets/icons/minus_btn.svg"),
+  xCircle("assets/icons/x_circle.svg");
 
   final String path;
 

@@ -24,7 +24,7 @@ class FilterCard extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: [
           Text(text,
               style: LocalTextStyle.bodyRegular.copyWith(color: Colors.black)),
