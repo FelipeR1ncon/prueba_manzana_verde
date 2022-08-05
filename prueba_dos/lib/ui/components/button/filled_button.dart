@@ -24,7 +24,7 @@ class FilledButton extends StatelessWidget {
             textStyle: MaterialStateProperty.all(
                 LocalTextStyle.emphasisText.copyWith(color: LocalColors.white)),
             backgroundColor: MaterialStateProperty.all(LocalColors.verdeV200)),
-        onPressed: () {},
+        onPressed: () => onPressed.call(),
         child: Center(
             child: Text(text,
                 style: LocalTextStyle.emphasisText,

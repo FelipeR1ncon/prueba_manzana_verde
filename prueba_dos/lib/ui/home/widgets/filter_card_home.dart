@@ -264,7 +264,9 @@ class _CardFilterState extends State<CardFilter> {
                                         MediaQuery.of(context).size.width * 0.8,
                                     child: FilledButton(
                                       text: "Filtrar (74 productos)",
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
                                     ),
                                   ),
                                 ]),

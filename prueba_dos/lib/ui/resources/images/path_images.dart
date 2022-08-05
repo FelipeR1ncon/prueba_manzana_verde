@@ -3,7 +3,7 @@ enum LocalImage {
   product2("assets/images/product_2.png"),
   product3("assets/images/product_3.png"),
   product4("assets/images/product_4.png"),
-  ;
+  map("assets/images/map.png");
 
   final String path;
 
