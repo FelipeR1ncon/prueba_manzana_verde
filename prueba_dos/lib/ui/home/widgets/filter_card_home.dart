@@ -1,10 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:prueba_dos/ui/components/card/filter_card.dart';
 import 'package:prueba_dos/ui/resources/color/color.dart';
 import 'package:prueba_dos/ui/resources/icon/path_icon.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
+
+import 'export.dart';
 
 class CardFilter extends StatefulWidget {
   const CardFilter({
@@ -181,59 +184,90 @@ class _CardFilterState extends State<CardFilter> {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 14, 20, 20),
-                            child: Wrap(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 36),
-                                  child: AutoSizeText("Marcas",
-                                      style: LocalTextStyle.emphasisText
-                                          .copyWith(fontSize: 18)),
-                                ),
-                                Wrap(children: [
-                                  for (var brand
-                                      in optionsBrand.entries.toList())
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: AutoSizeText(
-                                            brand.key,
-                                            maxLines: 3,
-                                            style: LocalTextStyle.bodyRegular
-                                                .copyWith(
-                                                    color:
-                                                        LocalColors.grisN100),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 12),
-                                          child: SizedBox(
-                                            width: 16,
-                                            height: 16,
-                                            child: Checkbox(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)),
-                                              value: brand.value,
-                                              onChanged: (selected) {
-                                                setState(() {
-                                                  optionsBrand[brand.key] =
-                                                      selected ?? false;
-                                                });
-                                                setModalState(() {});
-                                              },
+                          Container(
+                            decoration: const BoxDecoration(boxShadow: [
+                              BoxShadow(
+                                  offset: Offset(5, 10),
+                                  blurRadius: 30,
+                                  color: Color(0x40ffffff))
+                            ]),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(20, 14, 20, 20),
+                              child: Wrap(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 36),
+                                    child: AutoSizeText("Marcas",
+                                        style: LocalTextStyle.emphasisText
+                                            .copyWith(fontSize: 18)),
+                                  ),
+                                  Wrap(children: [
+                                    for (var brand
+                                        in optionsBrand.entries.toList())
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: AutoSizeText(
+                                              brand.key,
+                                              maxLines: 3,
+                                              style: LocalTextStyle.bodyRegular
+                                                  .copyWith(
+                                                      color:
+                                                          LocalColors.grisN100),
                                             ),
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                ])
-                              ],
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 12),
+                                            child: SizedBox(
+                                              width: 16,
+                                              height: 16,
+                                              child: Checkbox(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
+                                                value: brand.value,
+                                                onChanged: (selected) {
+                                                  setState(() {
+                                                    optionsBrand[brand.key] =
+                                                        selected ?? false;
+                                                  });
+                                                  setModalState(() {});
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                  ])
+                                ],
+                              ),
                             ),
+                          ),
+                          const Divider(
+                            height: 0.4,
+                            color: LocalColors.grisN30,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  SizedBox(
+                                    height: 42,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.8,
+                                    child: FilledButton(
+                                      text: "Filtrar (74 productos)",
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                ]),
                           )
                         ],
                       );

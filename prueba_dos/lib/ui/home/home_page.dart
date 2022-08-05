@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                 style: LocalTextStyle.titleText.copyWith(fontSize: 32),
               ),
             ),
-            CardFilter(),
+            const CardFilter(),
             const SizedBox(
               height: 21,
             ),
