@@ -53,7 +53,8 @@ class _LocationInputState extends State<LocationInput> {
                 child: SizedBox(
                   height: 52,
                   child: TextFormField(
-                    style: LocalTextStyle.bodyRegular,
+                    style: LocalTextStyle.bodyRegular
+                        .copyWith(color: LocalColors.grisN70),
                     onChanged: (text) {
                       if (widget.onChangeText != null) {
                         widget.onChangeText!(text);

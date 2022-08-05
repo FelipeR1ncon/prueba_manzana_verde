@@ -20,162 +20,171 @@ class HeaderHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        showModalBottomSheet(
-            isScrollControlled: true,
-            isDismissible: true,
-            constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.95),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-            ),
-            context: context,
-            enableDrag: true,
-            barrierColor: const Color(0x80000000),
-            backgroundColor: LocalColors.white,
-            builder: (context) {
-              return SingleChildScrollView(
-                child: Wrap(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 13, 13, 0),
+    return Container(
+      color: LocalColors.grisN20,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: SvgPicture.asset(LocalIcon.xCircle.path))
-                        ],
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgPicture.asset(LocalIcon.home.path),
+                      const SizedBox(
+                        width: 9.8,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 12),
-                      child: Expanded(
-                          child: AutoSizeText(
-                        "Consultar cobertura",
-                        maxLines: 2,
-                        style: LocalTextStyle.titleText.copyWith(
-                            fontSize: 24, color: LocalColors.grisN100),
-                      )),
-                    ),
-                    const Padding(
-                        padding: EdgeInsets.fromLTRB(20, 0, 20, 13),
-                        child: Expanded(
-                          child: AutoSizeText(
-                            "¿A donde te llevamos tus pedidos?",
-                            maxLines: 2,
-                            style: LocalTextStyle.bodyRegular,
-                          ),
-                        )),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Image.asset(
-                        LocalImage.map.path,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    Padding(
-                      padding: MediaQuery.of(context).viewInsets,
-                      child: const Padding(
-                          padding: EdgeInsets.all(20),
-                          child: LocationInput(hintText: "Dirección")),
-                    ),
-                    const Divider(
-                      height: 0.4,
-                      color: LocalColors.grisN30,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              height: 42,
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              child: FilledButton(
-                                text: "Continuar",
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ),
-                          ]),
-                    )
-                  ],
-                ),
-              );
-            });
-      },
-      child: Container(
-        color: LocalColors.grisN20,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                        child: Row(
+                      const Text(
+                        "Inicio",
+                        style: LocalTextStyle.bodyBold,
+                      )
+                    ],
+                  )),
+                  Flexible(
+                      child: Container(
+                    width: 58,
+                    height: 32,
+                    decoration: BoxDecoration(
+                        border:
+                            Border.all(color: LocalColors.verdeV200, width: 2),
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SvgPicture.asset(LocalIcon.home.path),
+                        SvgPicture.asset(LocalIcon.shoppingCart.path),
                         const SizedBox(
-                          width: 9.8,
+                          width: 6,
                         ),
-                        const Text(
-                          "Inicio",
-                          style: LocalTextStyle.bodyBold,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2),
+                          child: AutoSizeText(quatityProducts.toString(),
+                              style: LocalTextStyle.bodyBold.copyWith(
+                                color: LocalColors.verdeV200,
+                                fontSize: 16,
+                              )),
                         )
                       ],
-                    )),
-                    Flexible(
-                        child: Container(
-                      width: 58,
-                      height: 32,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: LocalColors.verdeV200, width: 2),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SvgPicture.asset(LocalIcon.shoppingCart.path),
-                          const SizedBox(
-                            width: 6,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 2),
-                            child: Text(quatityProducts.toString(),
-                                style: LocalTextStyle.bodyBold.copyWith(
-                                  color: LocalColors.verdeV200,
-                                  fontSize: 16,
-                                )),
-                          )
-                        ],
+                    ),
+                  ))
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            SearchInput(
+              onTapSearch: () {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+              placeHolder: "Buscar en market",
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+              child: GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                      isScrollControlled: true,
+                      isDismissible: true,
+                      useRootNavigator: true,
+                      constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.height * 0.95),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20)),
                       ),
-                    ))
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              const SearchInput(
-                placeHolder: "Buscar en market",
-              ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      context: context,
+                      enableDrag: true,
+                      barrierColor: const Color(0x80000000),
+                      backgroundColor: LocalColors.white,
+                      builder: (context) {
+                        return SingleChildScrollView(
+                          child: Wrap(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(0, 13, 13, 0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    GestureDetector(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: SvgPicture.asset(
+                                            LocalIcon.xCircle.path))
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 12),
+                                child: AutoSizeText(
+                                  "Consultar cobertura",
+                                  maxLines: 2,
+                                  style: LocalTextStyle.titleText.copyWith(
+                                      fontSize: 24,
+                                      color: LocalColors.grisN100),
+                                ),
+                              ),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(20, 0, 20, 13),
+                                  child: AutoSizeText(
+                                    "¿A donde te llevamos tus pedidos?",
+                                    maxLines: 2,
+                                    style: LocalTextStyle.bodyRegular,
+                                  )),
+                              SizedBox(
+                                width: double.infinity,
+                                child: Image.asset(
+                                  LocalImage.map.path,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: const Padding(
+                                    padding: EdgeInsets.all(20),
+                                    child:
+                                        LocationInput(hintText: "Dirección")),
+                              ),
+                              const Divider(
+                                height: 0.4,
+                                color: LocalColors.grisN30,
+                              ),
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 15),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      SizedBox(
+                                        height: 42,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.8,
+                                        child: FilledButton(
+                                          text: "Continuar",
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ),
+                                    ]),
+                              )
+                            ],
+                          ),
+                        );
+                      });
+                },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -186,12 +195,11 @@ class HeaderHome extends StatelessWidget {
                     const SizedBox(
                       width: 14,
                     ),
-                    Expanded(
-                        child: Text(
+                    AutoSizeText(
                       "Consultar cobertura",
                       style: LocalTextStyle.bodyRegular
-                          .copyWith(color: LocalColors.grisN70),
-                    )),
+                      .copyWith(color: LocalColors.grisN70),
+                    ),
                     SvgPicture.asset(
                       LocalIcon.chevronLeft.path,
                       color: LocalColors.grisN70,
@@ -200,9 +208,9 @@ class HeaderHome extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );

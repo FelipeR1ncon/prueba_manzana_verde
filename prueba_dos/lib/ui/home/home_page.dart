@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
         normalPrice: "S/. 11.00"),
   ];
 
+  // ignore: unused_field
   int _selectedIndex = 0;
   int _quatityProducts = 0;
 

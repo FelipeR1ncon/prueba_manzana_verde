@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:prueba_dos/ui/resources/color/color.dart';
 import 'package:prueba_dos/ui/resources/icon/path_icon.dart';
+import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
 class SearchInput extends StatelessWidget {
   ///Place holder que se mostrara en el input del componente
@@ -76,6 +77,8 @@ class SearchInput extends StatelessWidget {
                 ],
               ),
               child: TextFormField(
+                style: LocalTextStyle.bodyRegular
+                    .copyWith(color: LocalColors.grisN100),
                 onChanged: (text) {
                   if (onChangeText != null) {
                     onChangeText!(text);

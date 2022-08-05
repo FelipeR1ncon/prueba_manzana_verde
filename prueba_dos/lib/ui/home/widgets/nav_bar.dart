@@ -70,8 +70,8 @@ class _NavBarState extends State<NavBar> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Stack(children: [
-                        SvgPicture.asset(
+                      Row(children: [
+                        Image.asset(
                           LocalIcon.homaStart.path,
                           color: selectedIndex == 1
                               ? LocalColors.grisN100
@@ -79,10 +79,7 @@ class _NavBarState extends State<NavBar> {
                           width: 18,
                           height: 16,
                         ),
-                        Positioned(
-                          right: 0,
-                          top: 0,
-                          child: SvgPicture.asset(
+                        Image.asset(
                             LocalIcon.start.path,
                             color: selectedIndex == 1
                                 ? const Color(0xFFCF44A8)
@@ -90,7 +87,7 @@ class _NavBarState extends State<NavBar> {
                             width: 16,
                             height: 18,
                           ),
-                        ),
+
                       ]),
                       const SizedBox(
                         height: 6,

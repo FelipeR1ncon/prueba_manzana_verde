@@ -130,7 +130,7 @@ class _ProductCardState extends State<ProductCard> {
                   ],
                 ),
                 AddButton(
-                  minuBtnOnPressed: widget.minusBtnOnPressed,
+                  minusBtnOnPressed: widget.minusBtnOnPressed,
                   plusBtnOnPressed: widget.plusBtnOnPressed,
                   text: "Agregar",
                 )

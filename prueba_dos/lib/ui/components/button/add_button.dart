@@ -12,7 +12,7 @@ class AddButton extends StatefulWidget {
       this.heightButton = 32,
       this.initialCount = 0,
       this.plusBtnOnPressed,
-      this.minuBtnOnPressed})
+      this.minusBtnOnPressed})
       : super(key: key);
 
   ///Texto que se mostrara en el boton
@@ -24,7 +24,7 @@ class AddButton extends StatefulWidget {
   ///un item
   final void Function()? plusBtnOnPressed;
 
-  final void Function()? minuBtnOnPressed;
+  final void Function()? minusBtnOnPressed;
 
   @override
   State<AddButton> createState() => _AddButtonState();
@@ -56,9 +56,11 @@ class _AddButtonState extends State<AddButton> {
               LocalTextStyle.emphasisText.copyWith(color: LocalColors.white)),
           backgroundColor: MaterialStateProperty.all(LocalColors.verdeV200)),
       onPressed: () {
-        widget.plusBtnOnPressed?.call();
         setState(() {
-          count = count + 1;
+          if (count == 0) {
+            widget.plusBtnOnPressed?.call();
+            count = count + 1;
+          }
         });
       },
       child: SizedBox(
@@ -76,7 +78,7 @@ class _AddButtonState extends State<AddButton> {
                 children: [
                     GestureDetector(
                         onTap: () {
-                          widget.minuBtnOnPressed?.call();
+                          widget.minusBtnOnPressed?.call();
                           setState(() {
                             count = count - 1;
                           });
