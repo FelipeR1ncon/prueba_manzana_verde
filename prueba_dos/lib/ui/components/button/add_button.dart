@@ -5,6 +5,8 @@ import 'package:prueba_dos/ui/resources/color/color.dart';
 import 'package:prueba_dos/ui/resources/icon/path_icon.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
+
+///Boton que al darle click muestra dos iconos para agregar y restar
 class AddButton extends StatefulWidget {
   const AddButton(
       {Key? key,
@@ -17,13 +19,21 @@ class AddButton extends StatefulWidget {
 
   ///Texto que se mostrara en el boton
   final String text;
+
+  ///Altura del boton por defecto en 32
   final double heightButton;
+
+  ///El numero inicial del contador del boton, por defecto en 0, si envias
+  ///1 o mayor el boton mostrara los botones meno y mas, mostrando
+  ///el numero de [initialCount]
   final int initialCount;
 
-  ///Funcion que sera ejecutara cada vez que se de click en agregar o sumar
+  ///Funcion que sera ejecutara cada vez que se de click en agregar
   ///un item
   final void Function()? plusBtnOnPressed;
 
+  ///Funcion que sera ejecutara cada vez que se de click en restar
+  ///un item
   final void Function()? minusBtnOnPressed;
 
   @override
@@ -54,7 +64,7 @@ class _AddButtonState extends State<AddButton> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(32))),
           textStyle: MaterialStateProperty.all(
               LocalTextStyle.emphasisText.copyWith(color: LocalColors.white)),
-          backgroundColor: MaterialStateProperty.all(LocalColors.verdeV200)),
+          backgroundColor: MaterialStateProperty.all(LocalColors.greenV200)),
       onPressed: () {
         setState(() {
           if (count == 0) {

@@ -36,7 +36,7 @@ class SearchInput extends StatelessWidget {
             color: Colors.transparent,
             child: SvgPicture.asset(
               LocalIcon.arrowExit.path,
-              color: LocalColors.verdeV200,
+              color: LocalColors.greenV200,
               height: 20,
               width: 20,
             ),
@@ -78,7 +78,7 @@ class SearchInput extends StatelessWidget {
               ),
               child: TextFormField(
                 style: LocalTextStyle.bodyRegular
-                    .copyWith(color: LocalColors.grisN100),
+                    .copyWith(color: LocalColors.grayN100),
                 onChanged: (text) {
                   if (onChangeText != null) {
                     onChangeText!(text);
@@ -108,7 +108,7 @@ class SearchInput extends StatelessWidget {
             width: 48,
             height: 32,
             decoration: const BoxDecoration(
-              color: LocalColors.verdeV200,
+              color: LocalColors.greenV200,
               borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(8),
                   topRight: Radius.circular(8)),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_dos/ui/components/card/product/product_model.dart';
 import 'package:prueba_dos/ui/home/widgets/export.dart';
-import 'package:prueba_dos/ui/resources/images/path_images.dart';
+import 'package:prueba_dos/ui/resources/image/path_images.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
 
   // ignore: unused_field
   int _selectedIndex = 0;
-  int _quatityProducts = 0;
+  int _quantitiesProducts = 0;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -59,13 +59,13 @@ class _HomePageState extends State<HomePage> {
 
   void _addedProduct() {
     setState(() {
-      _quatityProducts = _quatityProducts + 1;
+      _quantitiesProducts = _quantitiesProducts + 1;
     });
   }
 
   void _subtractProduct() {
     setState(() {
-      _quatityProducts = _quatityProducts - 1;
+      _quantitiesProducts = _quantitiesProducts - 1;
     });
   }
 
@@ -75,21 +75,25 @@ class _HomePageState extends State<HomePage> {
         body: SafeArea(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            HeaderHome(quatityProducts: _quatityProducts),
+            HeaderHome(quantitiesProducts: _quantitiesProducts),
             Padding(
-              padding: const EdgeInsets.fromLTRB(12, 24, 12, 12),
+              padding: MediaQuery.of(context).size.height > 550
+                  ? const EdgeInsets.fromLTRB(12, 24, 12, 12)
+                  : const EdgeInsets.fromLTRB(12, 9, 12, 8),
               child: Text(
                 "Snack",
-                style: LocalTextStyle.titleText.copyWith(fontSize: 32),
+                style: LocalTextStyle.titleText.copyWith(
+                    fontSize:
+                        MediaQuery.of(context).size.height > 550 ? 32 : 22),
               ),
             ),
             const CardFilter(),
-            const SizedBox(
-              height: 21,
+            SizedBox(
+              height: MediaQuery.of(context).size.height > 550 ? 21 : 8,
             ),
             LabelFilter(labels: labels),
-            const SizedBox(
-              height: 24,
+            SizedBox(
+              height: MediaQuery.of(context).size.height > 550 ? 21 : 8,
             ),
             GridProduct(
               products: products,

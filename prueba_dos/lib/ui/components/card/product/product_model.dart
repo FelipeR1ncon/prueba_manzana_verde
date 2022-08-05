@@ -1,4 +1,5 @@
-///Clase de presentacion con los atributos que se mostraran al usuario
+///Clase de presentacion con los atributos de los productos
+///que se mostraran al usuario
 class ProductUIModel {
   final String productImagePath;
   final String productName;

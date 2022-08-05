@@ -40,7 +40,7 @@ class _LocationInputState extends State<LocationInput> {
           decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(
-                  color: hasFocus ? LocalColors.grisN100 : LocalColors.grisN30,
+                  color: hasFocus ? LocalColors.grayN100 : LocalColors.grayN30,
                   width: 1),
               borderRadius: const BorderRadius.all(Radius.circular(8))),
           child: Focus(
@@ -54,7 +54,7 @@ class _LocationInputState extends State<LocationInput> {
                   height: 52,
                   child: TextFormField(
                     style: LocalTextStyle.bodyRegular
-                        .copyWith(color: LocalColors.grisN70),
+                        .copyWith(color: LocalColors.grayN70),
                     onChanged: (text) {
                       if (widget.onChangeText != null) {
                         widget.onChangeText!(text);
@@ -64,13 +64,13 @@ class _LocationInputState extends State<LocationInput> {
                         currentText = text;
                       });
                     },
-                    cursorColor: LocalColors.grisN100,
+                    cursorColor: LocalColors.grayN100,
                     decoration: InputDecoration(
                       isDense: false,
                       labelStyle: LocalTextStyle.bodyBold.copyWith(
                           color: hasFocus || currentText.isNotEmpty
-                              ? LocalColors.grisN60
-                              : LocalColors.grisN70,
+                              ? LocalColors.grayN60
+                              : LocalColors.grayN70,
                           fontSize:
                               hasFocus || currentText.isNotEmpty ? 14 : 16),
                       contentPadding: const EdgeInsets.fromLTRB(12, 6, 12, 0),
@@ -97,7 +97,7 @@ class _LocationInputState extends State<LocationInput> {
                       width: 22,
                       child: SvgPicture.asset(
                         LocalIcon.search.path,
-                        color: LocalColors.grisN50,
+                        color: LocalColors.grayN50,
                         height: 22,
                         width: 22,
                       ),
@@ -119,7 +119,7 @@ class _LocationInputState extends State<LocationInput> {
               height: 22,
               child: SvgPicture.asset(
                 LocalIcon.gpsPoint.path,
-                color: LocalColors.verdeV200,
+                color: LocalColors.greenV200,
               ),
             ),
             const SizedBox(width: 8),
@@ -127,7 +127,7 @@ class _LocationInputState extends State<LocationInput> {
               "Ubicación actual",
               style: LocalTextStyle.bodyRegular.copyWith(
                   decoration: TextDecoration.underline,
-                  color: LocalColors.verdeV200),
+                  color: LocalColors.greenV200),
             )
           ],
         )

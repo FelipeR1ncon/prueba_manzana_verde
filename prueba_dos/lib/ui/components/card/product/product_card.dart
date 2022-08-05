@@ -5,6 +5,7 @@ import 'package:prueba_dos/ui/components/card/product/product_model.dart';
 import 'package:prueba_dos/ui/resources/color/color.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
+///Card para mostrar productos con el boton de agregar o restar unidades
 class ProductCard extends StatefulWidget {
   const ProductCard(
       {Key? key,
@@ -13,8 +14,13 @@ class ProductCard extends StatefulWidget {
       this.minusBtnOnPressed})
       : super(key: key);
 
+  ///Informacion del producto a mosrtrar
   final ProductUIModel product;
+
+  ///Funcion que se ejecuta cuando se le da click a la opcion de sumar un producto
   final void Function()? plusBtnOnPressed;
+
+  ///Funcion que se ejecuta cuando se le da click a la opcion de restar un producto
   final void Function()? minusBtnOnPressed;
 
   @override
@@ -66,7 +72,7 @@ class _ProductCardState extends State<ProductCard> {
                       left: 8,
                       child: Container(
                           decoration: BoxDecoration(
-                            color: LocalColors.verdeV200,
+                            color: LocalColors.greenV200,
                             borderRadius: BorderRadius.circular(48),
                           ),
                           child: Padding(
@@ -100,13 +106,13 @@ class _ProductCardState extends State<ProductCard> {
                   Text(widget.product.productMeasurement,
                       textAlign: TextAlign.start,
                       style: LocalTextStyle.bodyRegular
-                          .copyWith(color: LocalColors.grisN70, fontSize: 12)),
+                          .copyWith(color: LocalColors.grayN70, fontSize: 12)),
                 ]),
                 Row(children: [
                   Text(
                     widget.product.productBrand,
                     style: LocalTextStyle.bodyRegular
-                        .copyWith(color: LocalColors.verdeV200, fontSize: 12),
+                        .copyWith(color: LocalColors.greenV200, fontSize: 12),
                   ),
                 ]),
                 const SizedBox(

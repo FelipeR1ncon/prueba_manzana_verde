@@ -3,7 +3,7 @@ import 'package:prueba_dos/ui/resources/color/color.dart';
 import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
 class Label extends StatefulWidget {
-  ///Obligatorio,texto que se mostrara en la chip
+  ///Obligatorio,texto que se mostrara en el label
   final String text;
 
   ///Opcional, bandera para el estado inicial de la chip si este es true la chip
@@ -43,12 +43,12 @@ class Label extends StatefulWidget {
       {Key? key,
       required this.text,
       this.initialIsSelected = false,
-      this.selectedBackgroundColor = LocalColors.grisN100,
+      this.selectedBackgroundColor = LocalColors.grayN100,
       this.defaultBackgroundtColor = LocalColors.white,
-      this.borderDefaultColor = LocalColors.grisN40,
-      this.borderSelectedColor = LocalColors.grisN100,
+      this.borderDefaultColor = LocalColors.grayN40,
+      this.borderSelectedColor = LocalColors.grayN100,
       this.selectedTextColor = LocalColors.white,
-      this.defaultTextColor = LocalColors.grisN70,
+      this.defaultTextColor = LocalColors.grayN70,
       this.onTap})
       : super(key: key);
 

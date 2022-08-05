@@ -44,8 +44,8 @@ class _NavBarState extends State<NavBar> {
                       SvgPicture.asset(
                         LocalIcon.leaftFill.path,
                         color: selectedIndex == 1
-                            ? LocalColors.grisN50
-                            : LocalColors.grisN100,
+                            ? LocalColors.grayN50
+                            : LocalColors.grayN100,
                         width: 14,
                         height: 12,
                       ),
@@ -55,8 +55,8 @@ class _NavBarState extends State<NavBar> {
                       Text("Comidas",
                           style: LocalTextStyle.bodyBold.copyWith(
                               color: selectedIndex == 1
-                                  ? LocalColors.grisN50
-                                  : LocalColors.grisN100))
+                                  ? LocalColors.grayN50
+                                  : LocalColors.grayN100))
                     ],
                   ),
                 ),
@@ -74,13 +74,13 @@ class _NavBarState extends State<NavBar> {
                         Image.asset(
                           LocalIcon.homaStart.path,
                           color: selectedIndex == 1
-                              ? LocalColors.grisN100
-                              : LocalColors.grisN50,
+                              ? LocalColors.grayN100
+                              : LocalColors.grayN50,
                           width: 18,
                           height: 16,
                         ),
                         Image.asset(
-                            LocalIcon.start.path,
+                            LocalIcon.star.path,
                             color: selectedIndex == 1
                                 ? const Color(0xFFCF44A8)
                                 : const Color(0xADCF44A8),
@@ -95,8 +95,8 @@ class _NavBarState extends State<NavBar> {
                       Text("Market",
                           style: LocalTextStyle.bodyBold.copyWith(
                               color: selectedIndex == 1
-                                  ? LocalColors.grisN100
-                                  : LocalColors.grisN50))
+                                  ? LocalColors.grayN100
+                                  : LocalColors.grayN50))
                     ],
                   ),
                 )
