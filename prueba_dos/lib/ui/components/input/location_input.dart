@@ -54,7 +54,7 @@ class _LocationInputState extends State<LocationInput> {
                   height: 52,
                   child: TextFormField(
                     style: LocalTextStyle.bodyRegular
-                        .copyWith(color: LocalColors.grayN70),
+                        .copyWith(color: LocalColors.grayN100),
                     onChanged: (text) {
                       if (widget.onChangeText != null) {
                         widget.onChangeText!(text);
@@ -75,6 +75,8 @@ class _LocationInputState extends State<LocationInput> {
                               hasFocus || currentText.isNotEmpty ? 14 : 16),
                       contentPadding: const EdgeInsets.fromLTRB(12, 6, 12, 0),
                       labelText: widget.hintText,
+                      hintStyle: LocalTextStyle.bodyRegular
+                          .copyWith(color: LocalColors.grayN70),
                       alignLabelWithHint: true,
                       enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent)),
