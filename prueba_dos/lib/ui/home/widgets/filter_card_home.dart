@@ -187,7 +187,7 @@ class _CardFilterState extends State<CardFilter> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 36),
-                                  child: AutoSizeText("Ordenar por",
+                                  child: AutoSizeText("Marcas",
                                       style: LocalTextStyle.emphasisText
                                           .copyWith(fontSize: 18)),
                                 ),
