@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:separate_api/app_controller.dart';
-import 'package:separate_api/product.dart';
+import 'package:separate_api/ui/product/product_card_wiget.dart';
+import 'package:separate_api/ui/product/product_widget.dart';
 
 class ShopSection extends StatefulWidget {
   const ShopSection({Key? key}) : super(key: key);

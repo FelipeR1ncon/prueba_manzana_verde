@@ -2,7 +2,9 @@
 
 Imagina que trabajas en una empresa consultora, y que uno de tus compañeros ha estado trabajando en un pequeño ecommerce para uno de los clientes. Desafortunadamente tu compañero no ha podido continuar con el proyecto.
 
-Al ser tú uno de los desarrolladores más experimentados, el proyecto se te asigna a ti. Afortunadamente la aplicación está casi completa. Para completarla solo hace falta implementar el algoritmo que calcula el total de la compra y mostrar el resultado en pantalla.
+Al ser tú uno de los desarrolladores más experimentados, el proyecto se te asigna a ti.
+Afortunadamente la aplicación está casi completa. Para completarla solo hace falta
+implementar el algoritmo que calcula el total de la compra y mostrar el resultado en pantalla.
 
 ## Calcular el total de la compra.
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:separate_api/product.dart';
+import 'package:separate_api/ui/product/product_card_wiget.dart';
 import 'package:separate_api/services.dart';
+
+import 'model/cupon.dart';
+import 'model/producto.dart';
 
 class CatalogCartAndCheckout extends ChangeNotifier {
   List<Product> products = [];
@@ -52,6 +55,8 @@ class CatalogCartAndCheckout extends ChangeNotifier {
 
   calculateTotal() {
     // TODO: Implementar algoritmo para calcular total
+
+    ///total =  suma del **subtotal** más el **costo de delivery**  menos el **descuento de cupón**;
   }
 
   getCoupon(String code) async {
@@ -82,28 +87,4 @@ class CatalogCartAndCheckout extends ChangeNotifier {
   }
 }
 
-class Coupon {
-  Coupon({
-    this.id,
-    this.code,
-    this.description,
-    this.type,
-    this.payload,
-  });
 
-  int? id;
-  String? code;
-  String? description;
-  String? type;
-  Map<String, dynamic>? payload;
-
-  factory Coupon.fromJson(Map<String, dynamic> json) {
-    return Coupon(
-      id: json["id"],
-      code: json["code"],
-      description: json["description"],
-      type: json["type"],
-      payload: json["payload"],
-    );
-  }
-}
