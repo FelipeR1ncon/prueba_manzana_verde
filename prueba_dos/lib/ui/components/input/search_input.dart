@@ -90,6 +90,8 @@ class SearchInput extends StatelessWidget {
                   focusColor: LocalColors.white,
                   filled: true,
                   fillColor: LocalColors.white,
+                  hintStyle: LocalTextStyle.bodyRegular
+                      .copyWith(color: LocalColors.grayN40),
                   hintText: placeHolder,
                   border: const OutlineInputBorder(
                     borderSide: BorderSide.none,
