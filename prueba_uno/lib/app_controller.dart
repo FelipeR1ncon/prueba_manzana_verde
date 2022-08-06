@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:separate_api/services.dart';
+import 'package:separate_api/service/service_interface.dart';
 import 'model/cupon.dart';
 import 'model/payment_summary.dart';
 import 'model/producto.dart';
@@ -10,12 +10,16 @@ class CatalogCartAndCheckout extends ChangeNotifier {
   String? error;
   PaymentSummary? paymentSummary;
 
+  final ServiceI _serviceI;
+
+  CatalogCartAndCheckout(this._serviceI);
+
   init() async {
     await fetchProducts();
   }
 
   fetchProducts() async {
-    var products = await Services().getProducts();
+    var products = await _serviceI.getProducts();
     products = products["result"];
     this.products = (products as List).map(
       (e) {
@@ -159,7 +163,7 @@ class CatalogCartAndCheckout extends ChangeNotifier {
 
   getCoupon(String code) async {
     error = null;
-    var cupon = await Services().getCoupon(code);
+    var cupon = await _serviceI.getCoupon(code);
     cupon = cupon["result"];
     if (cupon != null) {
       paymentSummary!.coupon = Coupon.fromJson(cupon);
