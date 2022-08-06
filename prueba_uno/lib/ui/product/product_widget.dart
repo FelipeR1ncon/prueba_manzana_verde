@@ -19,7 +19,7 @@ class ProductW extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              product.name!,
+              product.name,
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
@@ -50,7 +50,7 @@ class ProductW extends StatelessWidget {
                               .where((element) => element.selected == 1);
                           appController.sum = count.length;
                         }
-                        if ((product.quantity ?? 0) > 0) {
+                        if ((product.quantity) > 0) {
                           appController.removeProduct(product);
                         }
                       },

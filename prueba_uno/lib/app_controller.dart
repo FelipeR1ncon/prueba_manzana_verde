@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:separate_api/ui/product/product_card_wiget.dart';
 import 'package:separate_api/services.dart';
-
 import 'model/cupon.dart';
+import 'model/payment_summary.dart';
 import 'model/producto.dart';
 
 class CatalogCartAndCheckout extends ChangeNotifier {
   List<Product> products = [];
-  Coupon? coupon;
   int? sum;
   String? error;
+  PaymentSummary? paymentSummary;
 
   init() async {
     await fetchProducts();
@@ -35,12 +34,12 @@ class CatalogCartAndCheckout extends ChangeNotifier {
     var count = products.where((element) => element.selected == 1);
     sum = count.length;
     productInList.selected = 1;
-    productInList.quantity = (productInList.quantity ?? 0) + 1;
+    productInList.quantity = (productInList.quantity) + 1;
     notifyListeners();
   }
 
   removeProduct(Product product) {
-    product.quantity = product.quantity! - 1;
+    product.quantity = product.quantity - 1;
     var count = products.where((element) => element.selected == 1);
     sum = count.length;
     notifyListeners();
@@ -54,9 +53,108 @@ class CatalogCartAndCheckout extends ChangeNotifier {
   }
 
   calculateTotal() {
-    // TODO: Implementar algoritmo para calcular total
+    double subTotalProduct = 0;
+    double total = 0;
+    double shippingCost = 0;
 
-    ///total =  suma del **subtotal** más el **costo de delivery**  menos el **descuento de cupón**;
+    ///Se clona la lista de productos con los agregados para no afectar
+    ///la lista original
+    List<Product> productsClone = [];
+    for (var originalProduct in products) {
+      if (originalProduct.quantity > 0) {
+        productsClone.add(originalProduct.clone());
+      }
+    }
+
+    ///Mapa para guardar los codigos de los productos a los que ya se les aplico
+    ///un descuento por paquete, la key es el producto que tenia como paquete al
+    ///codigo que esta como valor
+    Map<int, int> productsWithDiscountsApplied = {};
+
+    for (var currentProduct in productsClone) {
+      ///Si el producto ya se le aplico un descuento es por que paso como paquete
+      ///y por lo tanto su total ya fue calculado
+      if (!productsWithDiscountsApplied.containsKey(currentProduct.id) &&
+          !productsWithDiscountsApplied.containsValue(currentProduct.id)) {
+        ///Si el producto esta en promocion y esta por mas de 2 unidades se aplica
+        ///la promocion de un producto gratis
+        if (currentProduct.quantity > 2 && currentProduct.promotion) {
+          currentProduct.quantity = currentProduct.quantity - 1;
+        }
+
+        ///Si no aplica para promocion verificamos si aplica a la promo por paquete
+        else {
+          /// Buscamos si el producto actual tiene algun id de los otros productos
+          /// dentro de sus match
+          if (currentProduct.match.isNotEmpty) {
+            for (var idMatch in currentProduct.match) {
+              for (var productPackage in productsClone) {
+                if (productPackage.id != currentProduct.id &&
+                    !productsWithDiscountsApplied
+                        .containsKey(productPackage.id) &&
+                    !productsWithDiscountsApplied
+                        .containsValue(productPackage.id)) {
+                  if (idMatch == productPackage.id) {
+                    subTotalProduct = subTotalProduct +
+                        (currentProduct.quantity.toDouble() *
+                            (currentProduct.price * 0.90)) +
+                        (productPackage.quantity *
+                            (productPackage.price * 0.90));
+
+                    productsWithDiscountsApplied[currentProduct.id] =
+                        productPackage.id;
+                  }
+                }
+              }
+            }
+          }
+
+          ///Buscamos si en lo otros productos tienen el id del producto actual
+          ///en sus match
+          ///
+          ///Solo si el producto actual no hizo un paquete  con algun id de
+          ///sus match
+          if (!productsWithDiscountsApplied.containsKey(currentProduct.id)) {
+            for (var productPackage in productsClone) {
+              if (productPackage.match.isNotEmpty &&
+                  productPackage.id != currentProduct.id &&
+                  !productsWithDiscountsApplied
+                      .containsKey(productPackage.id) &&
+                  !productsWithDiscountsApplied
+                      .containsValue(productPackage.id)) {
+                for (var code in productPackage.match) {
+                  if (code == currentProduct.id) {
+                    subTotalProduct = subTotalProduct +
+                        (currentProduct.quantity.toDouble() *
+                            (currentProduct.price * 0.90)) +
+                        (productPackage.quantity *
+                            (productPackage.price * 0.90));
+
+                    productsWithDiscountsApplied[productPackage.id] =
+                        currentProduct.id;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        ///Si aplica a un paquete el subtotal ya estara calculado
+        if (!productsWithDiscountsApplied.containsValue(currentProduct.id) &&
+            !productsWithDiscountsApplied.containsKey(currentProduct.id)) {
+          subTotalProduct = subTotalProduct +
+              currentProduct.quantity.toDouble() *
+                  currentProduct.price.toDouble();
+        }
+      }
+    }
+
+    ///Si el suptotal no es igual  o mayor a 500 se le cobra 30 de envio
+    if (subTotalProduct < 500) {
+      shippingCost = 30;
+    }
+
+    paymentSummary = PaymentSummary(subTotalProduct, shippingCost);
   }
 
   getCoupon(String code) async {
@@ -64,7 +162,7 @@ class CatalogCartAndCheckout extends ChangeNotifier {
     var cupon = await Services().getCoupon(code);
     cupon = cupon["result"];
     if (cupon != null) {
-      coupon = Coupon.fromJson(cupon);
+      paymentSummary!.coupon = Coupon.fromJson(cupon);
       notifyListeners();
     } else {
       error = "El cupón no existe";
@@ -82,9 +180,12 @@ class CatalogCartAndCheckout extends ChangeNotifier {
 
   pay(BuildContext context) {
     clearCart();
-    coupon = null;
+    paymentSummary != null;
     Navigator.of(context).pop();
   }
+
+  void removeCoupon() {
+    paymentSummary!.coupon = null;
+    notifyListeners();
+  }
 }
-
-

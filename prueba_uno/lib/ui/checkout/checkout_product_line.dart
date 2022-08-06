@@ -34,7 +34,7 @@ class CheckoutProductLine extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
             child: Image.asset(
-              "assets/${product.image!}.jpeg",
+              "assets/${product.image}.jpeg",
               fit: BoxFit.cover,
               width: 60,
               height: 60,
@@ -45,7 +45,7 @@ class CheckoutProductLine extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Text(
-              product.name!,
+              product.name,
               style: const TextStyle(
                 fontSize: 16,
               ),
@@ -58,7 +58,7 @@ class CheckoutProductLine extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerRight,
             child: Text(
-              "\$ ${product.price! * product.quantity!}",
+              "\$ ${product.price* product.quantity}",
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

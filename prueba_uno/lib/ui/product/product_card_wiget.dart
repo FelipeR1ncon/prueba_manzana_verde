@@ -13,7 +13,7 @@ class ProductCartW extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            product.name!,
+            product.name,
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w300,

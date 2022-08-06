@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:separate_api/app_controller.dart';
+import 'package:separate_api/model/payment_summary.dart';
 
 import 'checkout_product_line.dart';
 
@@ -16,6 +17,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
   final ScrollController _sc = ScrollController();
   final TextEditingController _tc = TextEditingController();
 
+  var loadInitialData = true;
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
@@ -24,6 +27,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
           duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
     });
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (loadInitialData) {
+      Provider.of<CatalogCartAndCheckout>(context).calculateTotal();
+      loadInitialData = false;
+    }
   }
 
   @override
@@ -41,6 +53,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   @override
   Widget build(BuildContext context) {
+    final PaymentSummary summary =
+        Provider.of<CatalogCartAndCheckout>(context).paymentSummary!;
     return Scaffold(
       appBar: AppBar(title: const Text("Pago")),
       body: Consumer<CatalogCartAndCheckout>(
@@ -60,7 +74,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   }).toList(),
                 ),
                 const Divider(height: 50),
-                if (cart.coupon == null)
+                if (cart.paymentSummary!.coupon == null)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -112,12 +126,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         )
                     ],
                   ),
-                if (cart.coupon != null)
+                if (cart.paymentSummary!.coupon != null)
                   Row(
                     children: [
                       Expanded(
                         child: Text(
-                          "Cupón ${cart.coupon!.code} aplicado",
+                          "Cupón ${cart.paymentSummary!.coupon!.code} aplicado",
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -127,9 +141,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       const SizedBox(width: 10),
                       IconButton(
                         onPressed: () {
-                          cart.coupon = null;
-                          // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
-                          cart.notifyListeners();
+                          cart.removeCoupon();
                         },
                         icon: const Icon(Icons.delete),
                         color: Colors.grey,
@@ -141,8 +153,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   runSpacing: 15,
                   children: [
                     Row(
-                      children: const [
-                        Expanded(
+                      children: [
+                        const Expanded(
                             child: Text(
                           "Subtotal",
                           style: TextStyle(
@@ -151,8 +163,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ),
                         )),
                         Text(
-                          "calcular",
-                          style: TextStyle(
+                          summary.subTotal.toString(),
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
@@ -160,8 +172,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ],
                     ),
                     Row(
-                      children: const [
-                        Expanded(
+                      children: [
+                        const Expanded(
                             child: Text(
                           "Descuento por cupón",
                           style: TextStyle(
@@ -170,8 +182,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ),
                         )),
                         Text(
-                          "calcular",
-                          style: TextStyle(
+                          cart.paymentSummary!.getDiscountCoupon().toString(),
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
@@ -179,8 +191,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ],
                     ),
                     Row(
-                      children: const [
-                        Expanded(
+                      children: [
+                        const Expanded(
                             child: Text(
                           "Costo de envío",
                           style: TextStyle(
@@ -189,8 +201,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ),
                         )),
                         Text(
-                          "calcular",
-                          style: TextStyle(
+                          summary.shippingCost.toString(),
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
@@ -201,8 +213,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ),
                 const Divider(height: 50),
                 Row(
-                  children: const [
-                    Expanded(
+                  children: [
+                    const Expanded(
                       child: Text(
                         "Total",
                         style: TextStyle(
@@ -212,8 +224,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ),
                     ),
                     Text(
-                      "calcular",
-                      style: TextStyle(
+                      cart.paymentSummary!.getTotal().toString(),
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
                       ),
