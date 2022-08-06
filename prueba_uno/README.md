@@ -82,8 +82,8 @@ En este punto tienes la libertad de cambiar cualquier aspecto del proyecto. Las 
 
 Se hace una primera entrega al cliente y este queda satisfecho con el resultado. Aun así, considera
  que existe la posibilidad de que futuros desarrollos cambien inadvertidamente el funcionamiento de
-  la aplicación. Por este motivo, y para darle tranquilidad al cliente, se le asegura que la entrega
-  final tendrá test automatizados para prevenir esta situación.
+ la aplicación. Por este motivo, y para darle tranquilidad al cliente, se le asegura que la entrega
+ final tendrá test automatizados para prevenir esta situación.
 
 Tu tarea es agregar los tests al algoritmo que calcula el total de la compra.
 De ser posible también debes testear que el número que aparece en pantalla coincida

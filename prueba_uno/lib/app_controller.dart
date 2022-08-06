@@ -69,6 +69,8 @@ class CatalogCartAndCheckout extends ChangeNotifier {
       }
     }
 
+
+
     ///Mapa para guardar los codigos de los productos a los que ya se les aplico
     ///un descuento por paquete, la key es el producto que tenia en sus match al
     ///codigo que esta como valor
@@ -153,7 +155,7 @@ class CatalogCartAndCheckout extends ChangeNotifier {
     }
 
     ///Si el suptotal NO es igual  o mayor a 500 se le cobra 30 de envio
-    if (subTotalProduct < 500) {
+    if (subTotalProduct < 500 && productsClone.isNotEmpty) {
       shippingCost = 30;
     }
 

@@ -13,12 +13,13 @@ class PaymentSummary {
     double discountCoupon = 0;
 
     if (coupon != null) {
-      if (coupon!.code == "PORCENTAJE") {
-        if (subTotal >= double.parse(coupon!.payload!["minimum"].toString())) {
-          discountCoupon = subTotal *(double.parse(coupon!.payload!["value"].toString()) / 100);
+      if (subTotal >= double.parse(coupon!.payload!["minimum"].toString())) {
+        if (coupon!.code == "PORCENTAJE") {
+          discountCoupon = subTotal *
+              (double.parse(coupon!.payload!["value"].toString()) / 100);
+        } else {
+          discountCoupon = double.parse(coupon!.payload!["value"].toString());
         }
-      } else {
-        discountCoupon = double.parse(coupon!.payload!["value"].toString());
       }
     }
 
