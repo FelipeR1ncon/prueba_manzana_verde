@@ -58,7 +58,6 @@ class CatalogCartAndCheckout extends ChangeNotifier {
 
   calculateTotal() {
     double subTotalProduct = 0;
-    double total = 0;
     double shippingCost = 0;
 
     ///Se clona la lista de productos con los agregados para no afectar
@@ -71,13 +70,13 @@ class CatalogCartAndCheckout extends ChangeNotifier {
     }
 
     ///Mapa para guardar los codigos de los productos a los que ya se les aplico
-    ///un descuento por paquete, la key es el producto que tenia como paquete al
+    ///un descuento por paquete, la key es el producto que tenia en sus match al
     ///codigo que esta como valor
     Map<int, int> productsWithDiscountsApplied = {};
 
     for (var currentProduct in productsClone) {
       ///Si el producto ya se le aplico un descuento es por que paso como paquete
-      ///y por lo tanto su total ya fue calculado
+      ///y por lo tanto su subtotal ya fue calculado
       if (!productsWithDiscountsApplied.containsKey(currentProduct.id) &&
           !productsWithDiscountsApplied.containsValue(currentProduct.id)) {
         ///Si el producto esta en promocion y esta por mas de 2 unidades se aplica
@@ -143,7 +142,7 @@ class CatalogCartAndCheckout extends ChangeNotifier {
           }
         }
 
-        ///Si aplica a un paquete el subtotal ya estara calculado
+        ///Si se  aplica un paquete el subtotal ya estara calculado
         if (!productsWithDiscountsApplied.containsValue(currentProduct.id) &&
             !productsWithDiscountsApplied.containsKey(currentProduct.id)) {
           subTotalProduct = subTotalProduct +
@@ -153,7 +152,7 @@ class CatalogCartAndCheckout extends ChangeNotifier {
       }
     }
 
-    ///Si el suptotal no es igual  o mayor a 500 se le cobra 30 de envio
+    ///Si el suptotal NO es igual  o mayor a 500 se le cobra 30 de envio
     if (subTotalProduct < 500) {
       shippingCost = 30;
     }
