@@ -18,4 +18,4 @@ Orden de Ramas prueba_dos/:
 - home-page
 - bottom-sheet
 
-Cada rama contiene los respectivos de commits con los cambios relevantes.
+Cada rama contiene los respectivos commits con los cambios relevantes.
