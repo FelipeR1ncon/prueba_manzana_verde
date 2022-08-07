@@ -185,7 +185,7 @@ class HeaderHome extends StatelessWidget {
                 Padding(
                   padding: MediaQuery.of(context).viewInsets,
                   child:  Padding(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       child: LocationInput(
                         hintText: "Dirección",
                         controller: locationTextController,
