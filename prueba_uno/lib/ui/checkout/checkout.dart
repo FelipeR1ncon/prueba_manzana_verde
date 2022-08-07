@@ -84,6 +84,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             child: SizedBox(
                               height: 50,
                               child: TextField(
+
                                 controller: _tc,
                                 decoration: InputDecoration(
                                   hintText: "Cupón",
