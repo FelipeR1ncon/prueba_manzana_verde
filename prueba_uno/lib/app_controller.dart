@@ -69,7 +69,8 @@ class CatalogCartAndCheckout extends ChangeNotifier {
       }
     }
 
-
+    // productsClone[0].promotion = true;
+    // productsClone[1].match = [productsClone[0].id];
 
     ///Mapa para guardar los codigos de los productos a los que ya se les aplico
     ///un descuento por paquete, la key es el producto que tenia en sus match al
@@ -77,6 +78,8 @@ class CatalogCartAndCheckout extends ChangeNotifier {
     Map<int, int> productsWithDiscountsApplied = {};
 
     for (var currentProduct in productsClone) {
+      bool match = false;
+
       ///Si el producto ya se le aplico un descuento es por que paso como paquete
       ///y por lo tanto su subtotal ya fue calculado
       if (!productsWithDiscountsApplied.containsKey(currentProduct.id) &&
@@ -95,11 +98,13 @@ class CatalogCartAndCheckout extends ChangeNotifier {
             for (var idMatch in currentProduct.match) {
               for (var productPackage in productsClone) {
                 if (productPackage.id != currentProduct.id &&
+                    !productPackage.promotion &&
+                    !currentProduct.promotion &&
                     !productsWithDiscountsApplied
                         .containsKey(productPackage.id) &&
                     !productsWithDiscountsApplied
                         .containsValue(productPackage.id)) {
-                  if (idMatch == productPackage.id) {
+                  if (idMatch == productPackage.id && !match) {
                     subTotalProduct = subTotalProduct +
                         (currentProduct.quantity.toDouble() *
                             (currentProduct.price * 0.90)) +
@@ -108,6 +113,7 @@ class CatalogCartAndCheckout extends ChangeNotifier {
 
                     productsWithDiscountsApplied[currentProduct.id] =
                         productPackage.id;
+                    match = true;
                   }
                 }
               }
@@ -119,16 +125,19 @@ class CatalogCartAndCheckout extends ChangeNotifier {
           ///
           ///Solo si el producto actual no hizo un paquete  con algun id de
           ///sus match
-          if (!productsWithDiscountsApplied.containsKey(currentProduct.id)) {
+          if (!productsWithDiscountsApplied.containsKey(currentProduct.id) &&
+              !match) {
             for (var productPackage in productsClone) {
-              if (productPackage.match.isNotEmpty &&
+              if (!productPackage.promotion &&
+                  !currentProduct.promotion &&
+                  productPackage.match.isNotEmpty &&
                   productPackage.id != currentProduct.id &&
                   !productsWithDiscountsApplied
                       .containsKey(productPackage.id) &&
                   !productsWithDiscountsApplied
                       .containsValue(productPackage.id)) {
                 for (var code in productPackage.match) {
-                  if (code == currentProduct.id) {
+                  if (code == currentProduct.id && !match) {
                     subTotalProduct = subTotalProduct +
                         (currentProduct.quantity.toDouble() *
                             (currentProduct.price * 0.90)) +
@@ -137,6 +146,8 @@ class CatalogCartAndCheckout extends ChangeNotifier {
 
                     productsWithDiscountsApplied[productPackage.id] =
                         currentProduct.id;
+
+                    match = true;
                   }
                 }
               }
