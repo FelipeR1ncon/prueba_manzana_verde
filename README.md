@@ -12,7 +12,7 @@ Orden de Ramas prueba_uno/:
 - test
 
 # Aplicación 2 reto 2
-[LINK APK prueba 2](https://drive.google.com/file/d/1mtssig6USZwvWP1Ts3x0XOCkCKVZ91Fp/view?usp=sharing)
+[LINK APK prueba 2](https://drive.google.com/file/d/1fZMeVgJxJQ2mVbvGX71XwB6xEWXrkdYE/view?usp=sharing)
 Orden de Ramas prueba_dos/:
 - componentes
 - home-page
