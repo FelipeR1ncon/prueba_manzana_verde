@@ -10,8 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:provider/provider.dart';
 import 'package:separate_api/app_controller.dart';
-
-import 'package:separate_api/main.dart';
 import 'package:separate_api/model/producto.dart';
 import 'package:separate_api/service/service_interface.dart';
 import 'package:separate_api/ui/checkout/checkout.dart';
@@ -44,7 +42,7 @@ void main() {
   });
 
   testWidgets(
-      'Verificar datos en la pantalla de pago antes y despues de aplicar un cupon',
+      'Verificar datos en la pantalla de pago con 1 producto antes y despues de aplicar un cupon',
       (WidgetTester tester) async {
     await tester.pumpWidget(
       MultiProvider(
