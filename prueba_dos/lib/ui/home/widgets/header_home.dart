@@ -14,9 +14,11 @@ class HeaderHome extends StatelessWidget {
   const HeaderHome({
     Key? key,
     required this.quantitiesProducts,
+    required this.locationTextController,
   }) : super(key: key);
 
   final int quantitiesProducts;
+  final TextEditingController locationTextController;
 
   @override
   Widget build(BuildContext context) {
@@ -182,9 +184,12 @@ class HeaderHome extends StatelessWidget {
                 ),
                 Padding(
                   padding: MediaQuery.of(context).viewInsets,
-                  child: const Padding(
+                  child:  Padding(
                       padding: EdgeInsets.all(20),
-                      child: LocationInput(hintText: "Dirección")),
+                      child: LocationInput(
+                        hintText: "Dirección",
+                        controller: locationTextController,
+                      )),
                 ),
                 const Divider(
                   height: 0.4,

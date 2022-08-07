@@ -51,6 +51,8 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   int _quantitiesProducts = 0;
 
+  final TextEditingController _locationTextController = TextEditingController();
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -70,12 +72,21 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void dispose() {
+    _locationTextController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            HeaderHome(quantitiesProducts: _quantitiesProducts),
+            HeaderHome(
+              quantitiesProducts: _quantitiesProducts,
+              locationTextController: _locationTextController,
+            ),
             Padding(
               padding: MediaQuery.of(context).size.height > 550
                   ? const EdgeInsets.fromLTRB(12, 24, 12, 12)

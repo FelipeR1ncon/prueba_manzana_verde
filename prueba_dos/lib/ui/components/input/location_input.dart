@@ -6,7 +6,11 @@ import 'package:prueba_dos/ui/resources/style/text_style.dart';
 
 class LocationInput extends StatefulWidget {
   const LocationInput(
-      {Key? key, required this.hintText, this.onTapSearch, this.onChangeText})
+      {Key? key,
+      required this.hintText,
+      this.onTapSearch,
+      this.onChangeText,
+      required this.controller})
       : super(key: key);
 
   ///Texto para indicarle al usuario que debe de ingresar en el campo
@@ -17,6 +21,8 @@ class LocationInput extends StatefulWidget {
 
   ///Funcion que se ejecuta cada vez que cambia el texto del input
   final void Function(String)? onChangeText;
+
+  final TextEditingController controller;
 
   @override
   State<LocationInput> createState() => _LocationInputState();
@@ -53,10 +59,12 @@ class _LocationInputState extends State<LocationInput> {
                 child: SizedBox(
                   height: 52,
                   child: TextFormField(
+                    controller: widget.controller,
                     style: LocalTextStyle.bodyRegular
                         .copyWith(color: LocalColors.grayN100),
                     onChanged: (text) {
                       if (widget.onChangeText != null) {
+                        widget.controller.text = text;
                         widget.onChangeText!(text);
                       }
 
@@ -111,27 +119,34 @@ class _LocationInputState extends State<LocationInput> {
           ),
         ),
         const SizedBox(height: 4),
-        Row(
-          children: [
-            const SizedBox(
-              width: 4,
-            ),
-            SizedBox(
-              width: 22,
-              height: 22,
-              child: SvgPicture.asset(
-                LocalIcon.gpsPoint.path,
-                color: LocalColors.greenV200,
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              widget.controller.text = "Armenia, Quindío";
+            });
+          },
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 4,
               ),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              "Ubicación actual",
-              style: LocalTextStyle.bodyRegular.copyWith(
-                  decoration: TextDecoration.underline,
-                  color: LocalColors.greenV200),
-            )
-          ],
+              SizedBox(
+                width: 22,
+                height: 22,
+                child: SvgPicture.asset(
+                  LocalIcon.gpsPoint.path,
+                  color: LocalColors.greenV200,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                "Ubicación actual",
+                style: LocalTextStyle.bodyRegular.copyWith(
+                    decoration: TextDecoration.underline,
+                    color: LocalColors.greenV200),
+              )
+            ],
+          ),
         )
       ],
     );
