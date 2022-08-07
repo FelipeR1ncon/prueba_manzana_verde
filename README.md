@@ -1,17 +1,21 @@
-# Prueba técnica
+## Prueba técnica LUIS FELIPE RINCON 
  
-Este repositorio contiene dos pruebas diseñadas para evaluar tus habilidades como desarrollador.
+Este repositorio contiene los dos entregables de la prueba técnica de manzana verde.
  
-Podrás encontrar los detalles de cada prueba en el README.md de las carpetas *prueba_uno* y *prueba_dos* respectivamente. Te sugerimos leer atentamente cada una de las pruebas antes de comenzar.
+## **Entregables**
+# Aplicación 1 reto 1
 
+[LINK APK prueba 1](https://drive.google.com/file/d/1gPCz4OIgW5jmXV7mrnZJOzdSdZXswOS6/view?usp=sharing)
+Orden de Ramas prueba_uno/:
+- algoritmo-calcular-total
+- refactoring
+- test
 
+# Aplicación 2 reto 2
+[LINK APK prueba 2](https://drive.google.com/file/d/1fZMeVgJxJQ2mVbvGX71XwB6xEWXrkdYE/view?usp=sharing)
+Orden de Ramas prueba_dos/:
+- componentes
+- home-page
+- bottom-sheet
 
-## **Entregable**
-Aplicación 1 reto 1
-
-Aplicación 2 reto 2
-
-Sube tu código a Github y genera un apk por cada reto.
-
-## **Fecha límite:**
-5 dias apartir de recibir el reto
+Cada rama contiene los respectivos commits con los cambios relevantes.
