@@ -2,7 +2,7 @@
  
 Este repositorio contiene los dos entregables de la prueba técnica de manzana verde.
  
-## **Entregable**
+## **Entregables**
 # Aplicación 1 reto 1
 
 [LINK APK prueba 1](https://drive.google.com/file/d/1gPCz4OIgW5jmXV7mrnZJOzdSdZXswOS6/view?usp=sharing)
