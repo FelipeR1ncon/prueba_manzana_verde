@@ -69,8 +69,6 @@ class CatalogCartAndCheckout extends ChangeNotifier {
       }
     }
 
-    // productsClone[0].promotion = true;
-    // productsClone[1].match = [productsClone[0].id];
 
     ///Mapa para guardar los codigos de los productos a los que ya se les aplico
     ///un descuento por paquete, la key es el producto que tenia en sus match al
